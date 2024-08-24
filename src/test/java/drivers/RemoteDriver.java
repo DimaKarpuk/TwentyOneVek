@@ -11,7 +11,7 @@ public class RemoteDriver {
     }
 
     public void remoteConfig() {
-        Configuration.baseUrl = remoteConfig.getBaseUrl();
+       // Configuration.baseUrl = remoteConfig.getBaseUrl();
         Configuration.browser = remoteConfig.getBrowser();
         Configuration.browserSize = remoteConfig.getBrowserSize();
         Configuration.browserVersion = remoteConfig.getBrowserVersion();
