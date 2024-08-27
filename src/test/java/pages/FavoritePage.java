@@ -12,7 +12,8 @@ public class FavoritePage {
     private final SelenideElement
     favoriteButton = $(".headerFavoritesIcon"),
     favoritePageIsEmpty = $(byTagAndText("div","Нет избранных товаров")),
-    addToFavorite = $("[aria-label = 'В избранное']");
+    addToFavorite = $("[aria-label = 'В избранное']"),
+    removeFromFavoriteButton = $(".OldProductCard_removeBtn__Comnc");
 
     @Step("Нажимаем кнопку Избранное")
     public FavoritePage favoriteButtonClick(){
@@ -32,6 +33,11 @@ public class FavoritePage {
     @Step("Добовляем товар в избранное")
     public FavoritePage addToFavoriteClick(){
         addToFavorite.click();
+        return this;
+    }
+    @Step("Нажимаем кнопку удалить из избранное")
+    public FavoritePage removeFromFavoriteButtonClick(){
+        removeFromFavoriteButton.click();
         return this;
     }
 }

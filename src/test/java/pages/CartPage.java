@@ -10,7 +10,9 @@ public class CartPage {
     private final SelenideElement
             cartButton = $(".headerCartIcon"),
             cartIsEmpty = $(".EmptyBasket_emptyViewed__rpF6R"),
-            addToCartButton = $("[aria-label = 'Добавить в корзину']");
+            addToCartButton = $("[aria-label = 'Добавить в корзину']"),
+            removeFromCartButton = $("[aria-label = 'Удалить товар']"),
+            agreeRemoveFromCartButton = $("[data-testid = 'modal-confirmation-button']");
 
     @Step("Нажимаем кнопку Корзина")
     public CartPage cartButtonClick() {
@@ -33,6 +35,16 @@ public class CartPage {
     @Step("Проверяем что в корзине есть товар")
     public CartPage checkCartIsNotEmpty() {
         cartIsEmpty.shouldNotBe(visible);
+        return this;
+    }
+    @Step("Нажимаем кнопку удалить из корзины")
+    public CartPage removeFromCartButtonClick() {
+        removeFromCartButton.click();
+        return this;
+    }
+    @Step("Подтверждаем удаление")
+    public CartPage agreeRemoveButtonClick() {
+        agreeRemoveFromCartButton.click();
         return this;
     }
 }

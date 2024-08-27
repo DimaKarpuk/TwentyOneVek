@@ -2,9 +2,9 @@ package config;
 
 import org.aeonbits.owner.Config;
 public interface RemoteConfig extends Config {
-//    @Key("baseUrl")
-//    @DefaultValue("https://www.21vek.by/")
-//    String getBaseUrl();
+    @Key("baseUrl")
+    @DefaultValue("https://www.21vek.by/")
+    String getBaseUrl();
 
     @Key("browser")
     @DefaultValue("chrome")

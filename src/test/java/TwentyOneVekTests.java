@@ -1,7 +1,6 @@
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvFileSource;
 import pages.CartPage;
 import pages.FavoritePage;
 import pages.MainPage;
@@ -19,22 +18,41 @@ public class TwentyOneVekTests extends TestBase {
     TestData testData = new TestData();
     RandomUtils randomUtils = new RandomUtils();
 
+    @DisplayName("Тест на авторизацию без Email")
     @Test
-    void registrationTest() {
+    void incorrectLoginWithOutEmailTest() {
         step("Нажимаем кнопку Аккаунт", () -> {
             registrationPage.accountButtonClick();
         });
         step("Нажимаем кнопку Войти", () -> {
             registrationPage.loginButtonClick();
         });
-        step("Нажимаем кнопку Регистрация", () -> {
-            registrationPage.registrationButtonClick();
+        step("Вводим Email", () -> {
+            registrationPage.setLoginEmail(randomUtils.randomEmail);
         });
-        step("Вводим валидный email", () -> {
-            registrationPage.setRegisterEmail(randomUtils.randomEmail);
+        step("Проверяем что вход не выполнен", () -> {
+            registrationPage.checkPasswordErrorMessage();
         });
     }
 
+    @DisplayName("Тест на авторизацию без Пароля")
+    @Test
+    void incorrectLoginWithOutPasswordTest() {
+        step("Нажимаем кнопку Аккаунт", () -> {
+            registrationPage.accountButtonClick();
+        });
+        step("Нажимаем кнопку Войти", () -> {
+            registrationPage.loginButtonClick();
+        });
+        step("Вводим Email", () -> {
+            registrationPage.setLoginPassword(randomUtils.randomPassword);
+        });
+        step("Проверяем что вход не выполнен", () -> {
+            registrationPage.checkEmailErrorMessage();
+        });
+    }
+
+    @DisplayName("Тест на добавление товара в корзину")
     @Test
     void addToCartTest() {
         step("Проверяем что в корзине нет товара", () -> {
@@ -52,6 +70,28 @@ public class TwentyOneVekTests extends TestBase {
         });
     }
 
+    @DisplayName("Тест на удаление товара из корзины")
+    @Test
+    void removingItemsFromCartTest() {
+        step("Добовляем товар в корзину", () -> {
+            mainPage.setSearchBarrValue(testData.book);
+            mainPage.goodsClick(testData.book);
+            cartPage.addToCartButtonClick();
+        });
+        step("Проверяем что в корзине присуствует товар", () -> {
+            cartPage.cartButtonClick();
+            cartPage.checkCartIsNotEmpty();
+        });
+        step("Удаляем товар из корзины", () -> {
+            cartPage.removeFromCartButtonClick();
+            cartPage.agreeRemoveButtonClick();
+        });
+        step("Проверяем что в корзине нет товара", () -> {
+            cartPage.checkCartIsEmpty();
+        });
+    }
+
+    @DisplayName("Тест на добавление товара в избранное")
     @Test
     void addToFavoriteTest() {
         step("Проверяем что в избранном нет товара", () -> {
@@ -68,19 +108,23 @@ public class TwentyOneVekTests extends TestBase {
             favoritePage.checkFavoritePageIsNotEmpty();
         });
     }
-    @CsvFileSource(resources = "/testData.csv")
-    @ParameterizedTest(name = "Тест выбора города {0} на главной странице")
-    void selectCityTest(String city) {
-        step("Заходим в меню выбора города", () -> {
-            mainPage.cityButtonClick();
-            mainPage.clearCitySearchBarrClick();
+@DisplayName("Тест на удаление товара из избранное")
+    @Test
+    void removingItemsFromFavoriteTest() {
+        step("Добовляем товар в избранное", () -> {
+            mainPage.setSearchBarrValue(testData.painting);
+            mainPage.goodsClick(testData.painting);
+            favoritePage.addToFavoriteClick();
         });
-        step("Вводим в пойсковую строку город "+ city, () -> {
-            mainPage.SetSearchBarrChoiceCity(city);
-            mainPage.saveButtonChoiceCityClick();
+        step("Проверяем что в избранном присуствует товар", () -> {
+            favoritePage.favoriteButtonClick();
+            favoritePage.checkFavoritePageIsNotEmpty();
         });
-        step("Проверяем результат на главной странице", () -> {
-            mainPage.checkResultChoiceCity(city);
+        step("Удаляем товар из избранное", () -> {
+            favoritePage.removeFromFavoriteButtonClick();
+        });
+        step("Проверяем что в избранном нет товара", () -> {
+            favoritePage.checkFavoritePageIsEmpty();
         });
     }
 }

@@ -19,12 +19,13 @@ import java.util.Map;
 import static com.codeborne.selenide.Selectors.byTagAndText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
+import static io.qameta.allure.Allure.step;
 
 public class TestBase {
     private static final LocalConfig localConfig = ConfigFactory.create(LocalConfig.class, System.getProperties());
     private static final RemoteConfig remoteConfig = ConfigFactory.create(RemoteConfig.class, System.getProperties());
 
-    private static String defHost = "remote";
+    private static String defHost = "local";
     @BeforeAll
     public static void beforeAll() {
         Configuration.pageLoadStrategy = "eager";
@@ -46,11 +47,12 @@ public class TestBase {
     }
     @BeforeEach
     public void beforeEach(){
-        open("https://www.21vek.by/");
-        $(byTagAndText("div", "Отклонить")).click();
-        $(byTagAndText("div", "Отказаться")).click();
+        open("");
+        step("Отказываемся принять coocie", () -> {
+            $(byTagAndText("div", "Отклонить")).click();
+            $(byTagAndText("div", "Отказаться")).click();
+        });
     }
-
     @AfterEach
     void addAttachments() {
         Attach.screenshotAs("Last screenshot");
