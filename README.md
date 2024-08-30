@@ -66,7 +66,7 @@
 gradle clean test -DbrowserHost=local
 ```
 
-### Удаленный запуск (для запуск через selenoid нужно ввести адрес удаленного сервера)
+### Удаленный запуск (для запуска через selenoid нужно ввести адрес удаленного сервера)
 
 ```bash
 gradle clean test -DbrowserHost=remote
