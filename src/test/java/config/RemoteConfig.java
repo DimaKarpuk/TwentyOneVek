@@ -1,6 +1,7 @@
 package config;
 
 import org.aeonbits.owner.Config;
+
 public interface RemoteConfig extends Config {
     @Key("baseUrl")
     @DefaultValue("https://www.21vek.by/")
@@ -19,6 +20,5 @@ public interface RemoteConfig extends Config {
     String getBrowserVersion();
 
     @Key("remoteUrl")
-    @DefaultValue("https://user1:1234@selenoid.autotests.cloud/wd/hub")
     String remoteUrl();
 }
