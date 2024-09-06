@@ -49,7 +49,7 @@ public class TestBase {
     @BeforeEach
     public void beforeEach(){
         open("");
-        step("Отказываемся принять coocie", () -> {
+        step("Отказываемся принять cookie", () -> {
             $(byTagAndText("div", "Отклонить")).click();
             $(byTagAndText("div", "Отказаться")).click();
         });
