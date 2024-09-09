@@ -9,6 +9,7 @@
 - <a href="#console">Запуск тестов (Из терминала)</a>
 - <a href="#allureReport">Allure-отчет</a>
 - <a href="#allure">Интеграция с Allure TestOps</a>
+- <a href="#jira">Интеграция с Jira</a>
 - <a href="#teleg"> Уведомление в Telegram о результатах выполнения автоматизированных тестов</a>
 - <a href="#gif"> Пример видео запуска теста</a>
 ---
@@ -24,8 +25,9 @@
 ## 🔨 Технологии и инструменты:
 
 <p align="left">
+<a href="https://www.atlassian.com/ru/software/jira"> <img src="media/logo/jira-original-wordmark.svg" title="Jira" alt="Jira" width="40" height="40"/> </a>
 <a href="https://allurereport.org/"> <img src="media/logo/Allure_Report.svg" title="Appium" alt="Appium" width="40" height="40"/> </a>
-<a href="https://selenide.org/"> <img src="media/logo/Selenide.svg" title="Appium" alt="Appium" width="40" height="40"/> </a>
+<a href="https://selenide.org/"> <img src="media/logo/Selenide.svg" title="Selenide" alt="Selenide" width="40" height="40"/> </a>
 <a href="https://qameta.io/"> <img src="media/logo/allureTe.svg" title="Appium" alt="Appium" width="40" height="40"/> </a>
 <a href="https://www.w3schools.com/java/"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" title="Java" alt="Java" width="40" height="40"/> </a> 
 <a href="https://www.jetbrains.com/idea/"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/intellij/intellij-original.svg" title="IntelliJ Idea" alt="IntelliJ Idea" width="40" height="40"/> </a> 
@@ -107,6 +109,17 @@ gradle clean test -DbrowserHost=remote
 </p>
 
 ---
+
+<a id="jira"></a>
+## <img alt="Allure_TO" height="25" src="media/logo/jira-original-wordmark.svg" width="25"/> </a>Интеграция с <a target="_blank" href="https://jira.autotests.cloud/browse/HOMEWORK-1344">Jira</a>
+
+##  В Jira создана задача
+
+<p align="center">  
+<img title="Jira" src="media/screen/jiraWeb.png" width="850">  
+</p>
+---
+
 
 <a id="teleg"></a>
 ## <img src="media/logo/Telegram_2019_Logo.svg" width="25" height="25"/> Уведомления в Telegram чат с ботом
